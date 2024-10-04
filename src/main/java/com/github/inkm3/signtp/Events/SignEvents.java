@@ -155,12 +155,18 @@ public class SignEvents {
             String[] line = switch (side) {
                 case FRONT -> {
                     if ("[SignTP]".equalsIgnoreCase(frontData[0])) yield frontData;
-                    else yield backData;
+                    else {
+                        side = Side.BACK;
+                        yield backData;
+                    }
                 }
 
                 case BACK -> {
                     if ("[SignTP]".equalsIgnoreCase(backData[0])) yield backData;
-                    else yield frontData;
+                    else {
+                        side = Side.FRONT;
+                        yield frontData;
+                    }
                 }
 
                 default -> new String[]{ "", "", "", "" } ;
