@@ -420,7 +420,7 @@ public class SignEvents {
             if (event.getWhoClicked() instanceof Player player && !player.hasPermission("signtp.edit")) {
                 ItemStack item = event.getCursor();
 
-                if (item.getType().createBlockData().createBlockState() instanceof org.bukkit.block.Sign sign) {
+                if (item.getType().isBlock() && item.getType().createBlockData().createBlockState() instanceof org.bukkit.block.Sign sign) {
                     net.minecraft.world.item.ItemStack nmsItem = CraftItemStack.asNMSCopy(item);
                     nmsItem.set(DataComponents.BLOCK_ENTITY_DATA, CustomData.of(SignUtil.removeSignTP(nmsItem.getOrDefault(DataComponents.BLOCK_ENTITY_DATA, CustomData.of(((CraftBlockEntityState<?>) sign).getSnapshotNBTWithoutComponents())).copyTag())));
                     item.setItemMeta(nmsItem.getBukkitStack().getItemMeta());
