@@ -136,7 +136,7 @@ public class SignEvents {
             if (item != null) {
                 if (!player.isSneaking()) {
                     if (player.hasPermission("signtp.edit")) {
-                        if (item.getType().createBlockData().createBlockState() instanceof org.bukkit.block.Sign itemData)  {
+                        if (item.getType().isBlock() && item.getType().createBlockData().createBlockState() instanceof org.bukkit.block.Sign itemData)  {
                             sign.setBlockData(setSignData(blockData, itemData.getBlockData()));
                             sign.update(true, false);
                             data.setData(sign.getBlockData());
